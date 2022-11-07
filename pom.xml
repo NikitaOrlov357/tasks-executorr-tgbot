@@ -15,6 +15,7 @@
 	<description>tasks-executor-tgbot</description>
 	<properties>
 		<java.version>11</java.version>
+		<telegram.version>6.1.0</telegram.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,6 +32,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- Telegram API -->
+		<dependency>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambots</artifactId>
+			<version>${telegram.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambotsextensions</artifactId>
+			<version>${telegram.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -50,5 +62,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
