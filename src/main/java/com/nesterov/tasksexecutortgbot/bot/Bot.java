@@ -1,6 +1,9 @@
 package com.nesterov.tasksexecutortgbot.bot;
 
+import com.nesterov.tasksexecutortgbot.bot.dao.CommandMapper;
+import com.nesterov.tasksexecutortgbot.bot.dao.TasksDbDao;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.C;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,10 +18,11 @@ import java.util.List;
 public class Bot extends TelegramLongPollingBot {
     private final String token;
     private final String userName;
-    private final CommandsHandler commandsHandler = new CommandsHandler();
-    public Bot(String token, String userName){
+    private final CommandsHandler commandsHandler;
+    public Bot(String token, String userName, CommandsHandler commandsHandler){
         this.userName = userName;
         this.token = token;
+        this.commandsHandler = commandsHandler;
     }
 
     public boolean isCommand(Update update){
@@ -31,13 +35,15 @@ public class Bot extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdateReceived(Update update) {
+//        String message = update.getMessage().getText();
+//        sendMsg(update.getMessage().getChat().getUserName(), message);
         if (isCommand(update)){
             System.out.println("обработка комады");
-            sendMessage(commandsHandler.handle(update.getMessage()));
+            sendMessage(commandsHandler.handle(update.getMessage(), update.getMessage().getChat().getUserName()));
+            System.out.println(update.getMessage());
+            System.out.println(update.getUpdateId());
             return;
         }
-        String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
         log.info(update.getMessage().getFrom().toString());
 
     }
