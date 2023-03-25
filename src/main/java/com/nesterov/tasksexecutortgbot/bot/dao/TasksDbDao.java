@@ -3,6 +3,9 @@ package com.nesterov.tasksexecutortgbot.bot.dao;
 import com.nesterov.tasksexecutortgbot.bot.dto.Command;
 import com.nesterov.tasksexecutortgbot.bot.dto.CommandType;
 import com.nesterov.tasksexecutortgbot.bot.dto.ShortCommand;
+import com.nesterov.tasksexecutortgbot.bot.repository.CommandRepository;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +20,7 @@ import java.util.List;
 @Repository
 public class TasksDbDao implements CommandsDao {
 
-    private final DataSource hikariDataSource;
+    private final HikariDataSource hikariDataSource;
     @Override
     public List<ShortCommand> getShortCurrentCommands(String tgLogin) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(hikariDataSource);

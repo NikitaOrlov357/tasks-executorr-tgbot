@@ -14,7 +14,7 @@ public class ShortCommandMapper implements RowMapper<ShortCommand> {
     @Override
     public ShortCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new ShortCommand(
-                rs.getInt("id"),
+                rs.getLong("id"),
                 rs.getString("command"),
                 CommandType.valueOf(rs.getString("type").toUpperCase(Locale.ROOT))
                 );

@@ -3,7 +3,7 @@ package com.nesterov.tasksexecutortgbot.bot.dto;
 import lombok.Value;
 @Value
 public class ShortCommand {
-    int id;
+    Long id;
     String command;
     CommandType type;
 
